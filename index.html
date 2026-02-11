@@ -1262,8 +1262,28 @@
     }
 
     /* Final page */
+async function sendAnswersToSheet() {
+  const url = "https://script.google.com/macros/s/AKfycbyRPS5vYdnMv_oIlM8BZEf_WCHRe0Vlf9EXjkRkF3rqsknUvVS0q5i3UJQNwytGSY4vog/exec"; // paste your URL here
 
+  const payload = {
+    game1: state.game1.answers,
+    game2: state.game2.answers,
+    game3: state.game3.answers,
+    valentine: state.valentineInputs,
+    page2: state.page2Inputs
+  };
+
+  try {
+    await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+  } catch (e) {
+    console.error("Error sending answers:", e);
+  }
+}
     function renderFinalPage() {
+sendAnswersToSheet();
       state.currentView = "final";
       mainCard.innerHTML = `
         <h1>Happy Valentine’s Day, Doddity 💘</h1>
