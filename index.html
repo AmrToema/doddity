@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Valentine’s Day, Doddity 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #ff9a9e, #fecfef, #f5576c);
+      --primary-pink: #ff6fa5;
+      --primary-red: #ff3366;
+      --soft-pink: #ffe4f0;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-dark: #4a1f2f;
+      --correct-bg: #e7f8ea;
+      --correct-border: #4caf50;
+      --wrong-bg: #ffe4e4;
+      --wrong-border: #f44336;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 900px;
+      min-height: 100vh;
+      padding: 20px 12px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 0.6s ease;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      background: var(--primary-pink);
+      color: white;
+      margin: 6px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+      box-shadow: 0 4px 10px rgba(255, 51, 102, 0.4);
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(255, 51, 102, 0.5);
+      background: var(--primary-red);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-red);
+      border: 2px solid var(--primary-red);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: var(--soft-pink);
+    }
+
+    .btn-small {
+      padding: 7px 14px;
+      font-size: 0.85rem;
+    }
+
+    .choices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .choice-card {
+      background: var(--soft-pink);
+      border-radius: 14px;
+      padding: 14px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.2s ease;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .choice-card.selected {
+      border-color: var(--primary-red);
+      box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.3);
+      background: #ffeaf4;
+    }
+
+    .choice-card h3 {
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+    }
+
+    .choice-card p {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .choice-card textarea,
+    .choice-card input[type="text"],
+    .form-input {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #e0a3c0;
+      padding: 8px 10px;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      resize: none;
+      min-height: 40px;
+      line-height: 1.4;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    select.form-input {
+      background: white;
+    }
+
+    .hearts-container {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ffb6c9;
+      font-size: 18px;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(40px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s forwards;
+    }
+
+    .top-banner {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: #7a2b45;
+    }
+
+    .top-banner span {
+      font-weight: 700;
+    }
+
+    .popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .popup {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px 18px;
+      max-width: 320px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup h3 {
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .cute-popup {
+      animation: popupFadeIn 0.45s ease, heartbeat 1.8s infinite ease-in-out;
+      border: 2px solid #ff8fb3;
+    }
+
+    .popup-btn {
+      min-width: 120px;
+      margin: 6px;
+      font-size: 0.9rem;
+      padding: 9px 14px;
+      border-radius: 12px;
+    }
+
+    @keyframes popupFadeIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    .popup-close {
+      animation: popupFadeOut 0.45s forwards ease;
+    }
+
+    @keyframes popupFadeOut {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(0.8); opacity: 0; }
+    }
+
+    .popup-backdrop-fade {
+      animation: backdropFadeOut 0.45s forwards ease;
+    }
+
+    @keyframes backdropFadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .tagline span {
+      font-weight: 700;
+      color: var(--primary-red);
+    }
+
+    .yes-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .no-btn {
+      position: relative;
+    }
+
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 6px 0;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #f3a3c0;
+      background: #ffe9f3;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.15s ease, border 0.15s ease;
+    }
+
+    .quiz-option:hover {
+      background: #ffd4ea;
+    }
+
+    .quiz-option.correct-base {
+      border-color: var(--correct-border);
+      background: #f0fff3;
+    }
+
+    .quiz-option.correct-final {
+      border-color: var(--correct-border);
+      background: var(--correct-bg);
+    }
+
+    .quiz-option.wrong-final {
+      border-color: var(--wrong-border);
+      background: var(--wrong-bg);
+    }
+
+    .quiz-feedback {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .quiz-feedback span {
+      font-weight: 700;
+    }
+
+    .game-perfect {
+      text-align: center;
+      font-weight: 700;
+      margin-top: 16px;
+      font-size: 1rem;
+    }
+
+    .game-perfect span {
+      color: var(--primary-red);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Polaroid slider */
+    .slider-wrapper {
+      margin: 12px 0 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+
+    .slide {
+      min-width: 70%;
+      max-width: 70%;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .polaroid {
+      background: #fff;
+      border-radius: 10px;
+      padding: 8px 8px 14px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+      width: 100%;
+      max-width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .polaroid-inner {
+      width: 100%;
+      height: 150px;
+      border-radius: 8px;
+      background: #ffd1e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 4px;
+      color: #7a2b45;
+    }
+
+    .polaroid-caption {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .slide:nth-child(odd) .polaroid {
+      transform: rotate(-3deg);
+    }
+
+    .slide:nth-child(even) .polaroid {
+      transform: rotate(3deg);
+    }
+
+    @media (min-width: 480px) {
+      .slide {
+        min-width: 50%;
+        max-width: 50%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 26px 22px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <div class="app">
+    <div class="top-banner">
+      💓❤️‍🔥💖 <span>I love you, Doddity</span> 💖❤️‍🔥💓
+    </div>
+
+    <div id="mainCard" class="card"></div>
+  </div>
+
+  <!-- TODO: replace with your own music file -->
+  <audio id="bgMusic" loop>
+    <!-- <source src="music.mp3" type="audio/mpeg" /> -->
+  </audio>
+
+  <script>
+    const state = {
+      musicOn: false,
+      currentView: "intro",
+      game1: {
+        currentQuestionIndex: 0,
+        answers: [],
+        totalQuestions: 10
+      },
+      game2: {
+        currentQuestionIndex: 0,
+        answers: [],
+        totalQuestions: 5
+      },
+      game3: {
+        currentQuestionIndex: 0,
+        answers: [],
+        totalQuestions: 3
+      },
+      valentineChoice: null,
+      valentineInputs: {},
+      page2Inputs: {
+        rounds: "",
+        q1: "",
+        q2: ""
+      },
+      slider: {
+        index: 0,
+        timer: null,
+        touchStartX: 0,
+        touchEndX: 0
+      }
+    };
+
+    const mainCard = document.getElementById("mainCard");
+    const bgMusic = document.getElementById("bgMusic");
+
+    /* Hearts */
+    function createHearts() {
+      const container = document.getElementById("heartsContainer");
+      const emojis = ["💓", "💖", "❤️‍🔥", "💕", "💗"];
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 8 + Math.random() * 8 + "s";
+        heart.style.fontSize = 14 + Math.random() * 18 + "px";
+        heart.style.animationDelay = -Math.random() * 10 + "s";
+        container.appendChild(heart);
+      }
+    }
+    createHearts();
+
+    /* Utility */
+    function fadeTo(viewFn) {
+      mainCard.classList.add("fade-out");
+      setTimeout(() => {
+        viewFn();
+        mainCard.classList.remove("fade-out");
+      }, 450);
+    }
+
+    function showPopup(message, yesLabel, noLabel, onYes, onNo) {
+      const backdrop = document.createElement("div");
+      backdrop.className = "popup-backdrop";
+
+      const popup = document.createElement("div");
+      popup.className = "popup cute-popup";
+
+      popup.innerHTML = `
+        <h3 style="font-size:1.6rem;">💖</h3>
+        <p>${message}</p>
+        <div style="margin-top:14px;">
+          ${yesLabel ? `<button class="btn popup-btn" id="popupYes">${yesLabel}</button>` : ""}
+          ${noLabel ? `<button class="btn btn-secondary popup-btn" id="popupNo">${noLabel}</button>` : ""}
+        </div>
+      `;
+
+      backdrop.appendChild(popup);
+      document.body.appendChild(backdrop);
+
+      function closePopup(callback) {
+        popup.classList.add("popup-close");
+        backdrop.classList.add("popup-backdrop-fade");
+        setTimeout(() => {
+          document.body.removeChild(backdrop);
+          callback && callback();
+        }, 450);
+      }
+
+      if (yesLabel) {
+        popup.querySelector("#popupYes").onclick = () => {
+          closePopup(onYes);
+        };
+      }
+      if (noLabel) {
+        popup.querySelector("#popupNo").onclick = () => {
+          closePopup(onNo);
+        };
+      }
+    }
+
+    // Info popup (no buttons, auto close)
+    function showInfoPopup(message, duration = 1800, callback) {
+      const backdrop = document.createElement("div");
+      backdrop.className = "popup-backdrop";
+
+      const popup = document.createElement("div");
+      popup.className = "popup cute-popup";
+
+      popup.innerHTML = `
+        <h3 style="font-size:1.6rem;">💡</h3>
+        <p>${message}</p>
+      `;
+
+      backdrop.appendChild(popup);
+      document.body.appendChild(backdrop);
+
+      setTimeout(() => {
+        popup.classList.add("popup-close");
+        backdrop.classList.add("popup-backdrop-fade");
+        setTimeout(() => {
+          document.body.removeChild(backdrop);
+          callback && callback();
+        }, 450);
+      }, duration);
+    }
+
+    function showPerfectMessage(nextStep) {
+      fadeTo(() => {
+        mainCard.innerHTML = `
+          <div class="game-perfect">
+            Doddityy, <span>10/10</span> you're perfect 💕
+          </div>
+        `;
+      });
+      setTimeout(() => {
+        fadeTo(nextStep);
+      }, 1800);
+    }
+
+    // Auto-resize textareas
+    function initAutoTextareas(scope = document) {
+      const areas = scope.querySelectorAll("textarea.auto-textarea");
+      areas.forEach(area => {
+        const resize = () => {
+          area.style.height = "auto";
+          area.style.height = area.scrollHeight + "px";
+        };
+        area.addEventListener("input", resize);
+        resize();
+      });
+    }
+
+    /* Views */
+
+    function renderIntro() {
+      state.currentView = "intro";
+      showPopup(
+        "Wanna play some music while we go on this little love journey? 🎶💓",
+        "Yes my love 💖",
+        "Not now cutie 💕",
+        () => {
+          state.musicOn = true;
+          try { bgMusic.play(); } catch (e) {}
+          fadeTo(renderPage1);
+        },
+        () => {
+          state.musicOn = false;
+          fadeTo(renderPage1);
+        }
+      );
+      mainCard.innerHTML = `
+        <h1>Happy Valentine’s Day, Doddity 💘</h1>
+        <p>Just a tiny website from Amr to his forever Valentine, Dalia (aka Doddity) 💓</p>
+      `;
+    }
+
+    // Polaroid slider helpers
+    function initSlider() {
+      const track = document.querySelector(".slider-track");
+      if (!track) return;
+      const slides = track.querySelectorAll(".slide");
+      if (!slides.length) return;
+
+      const total = slides.length;
+      state.slider.index = 0;
+
+      function goTo(index) {
+        state.slider.index = (index + total) % total;
+        const offset = -state.slider.index * 100;
+        track.style.transform = `translateX(${offset}%)`;
+      }
+
+      function autoSlide() {
+        state.slider.timer = setInterval(() => {
+          goTo(state.slider.index + 1);
+        }, 3000);
+      }
+
+      if (state.slider.timer) clearInterval(state.slider.timer);
+      autoSlide();
+
+      // Touch swipe
+      const wrapper = document.querySelector(".slider-wrapper");
+      if (!wrapper) return;
+
+      wrapper.addEventListener("touchstart", (e) => {
+        state.slider.touchStartX = e.touches[0].clientX;
+      });
+
+      wrapper.addEventListener("touchmove", (e) => {
+        state.slider.touchEndX = e.touches[0].clientX;
+      });
+
+      wrapper.addEventListener("touchend", () => {
+        const diff = state.slider.touchEndX - state.slider.touchStartX;
+        if (Math.abs(diff) > 50) {
+          if (diff < 0) {
+            goTo(state.slider.index + 1);
+          } else {
+            goTo(state.slider.index - 1);
+          }
+        }
+      });
+    }
+
+    function renderPage1() {
+      state.currentView = "page1";
+      mainCard.innerHTML = `
+        <h1>Will you be my forever Valentine? 💘</h1>
+        <p>Some of our moments together… and one very important question 💕</p>
+
+        <div class="slider-wrapper">
+          <div class="slider-track">
+            <!-- TODO: replace placeholders with real <img> inside .polaroid-inner -->
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner">Our Pic 1</div>
+                <div class="polaroid-caption">You & Me 💓</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner">Our Pic 2</div>
+                <div class="polaroid-caption">Laughing together 💕</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner">Our Pic 3</div>
+                <div class="polaroid-caption">One of my favorites 😍</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner">Our Pic 4</div>
+                <div class="polaroid-caption">Forever us ❤️‍🔥</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="center">Will you be my forever Valentine, Doddity? 💓</p>
+        <div class="yes-buttons" id="yesButtons"></div>
+        <div class="center" style="margin-top:10px;">
+          <button class="btn btn-secondary no-btn" id="noBtn">No 😛</button>
+        </div>
+        <p class="tagline">Choose wisely… or just choose <span>Yes</span> 10 times 😏💖</p>
+      `;
+
+      initSlider();
+
+      const yesContainer = document.getElementById("yesButtons");
+      for (let i = 0; i < 10; i++) {
+        const btn = document.createElement("button");
+        btn.className = "btn btn-small";
+        btn.textContent = "Yes 💖";
+        btn.onclick = () => {
+          fadeTo(() => {
+            mainCard.innerHTML = `
+              <h2>Yaaay! 💓</h2>
+              <p>But first… let’s play some games 😏🎮</p>
+            `;
+          });
+          setTimeout(() => fadeTo(renderGame1Intro), 1500);
+        };
+        yesContainer.appendChild(btn);
+      }
+
+      const noBtn = document.getElementById("noBtn");
+      noBtn.addEventListener("click", () => {
+        const randomX = Math.random() * 240 - 120; // bigger distance
+        const randomY = Math.random() * 160 - 80;
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        noBtn.textContent = "No 😛";
+      });
+    }
+
+    function renderGame1Intro() {
+      fadeTo(() => {
+        mainCard.innerHTML = `
+          <h2>Let’s play some games first 💕</h2>
+          <p>We’ll start with a little “Love Quiz about us ❤️‍🔥”.</p>
+        `;
+      });
+      setTimeout(() => fadeTo(renderGame1), 1500);
+    }
+
+    /* Game 1 */
+
+    const game1Questions = [
+      {
+        question: "Question 1 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 1
+      },
+      {
+        question: "Question 2 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 0
+      },
+      {
+        question: "Question 3 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 2
+      },
+      {
+        question: "Question 4 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 1
+      },
+      {
+        question: "Question 5 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 0
+      },
+      {
+        question: "Question 6 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 2
+      },
+      {
+        question: "Question 7 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 1
+      },
+      {
+        question: "Question 8 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 0
+      },
+      {
+        question: "Question 9 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 2
+      },
+      {
+        question: "Question 10 placeholder about us ❤️‍🔥",
+        options: ["Option A", "Option B", "Option C"],
+        correctIndex: 1
+      }
+    ];
+
+    function renderGame1() {
+      state.currentView = "game1";
+      const idx = state.game1.currentQuestionIndex;
+      const q = game1Questions[idx];
+
+      mainCard.innerHTML = `
+        <h2>Love Quiz about us ❤️‍🔥</h2>
+        <p>Question ${idx + 1} of ${game1Questions.length}</p>
+        <p><strong>${q.question}</strong></p>
+        <div id="optionsContainer"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+      `;
+
+      const optionsContainer = document.getElementById("optionsContainer");
+      const feedback = document.getElementById("quizFeedback");
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-option";
+        if (i === q.correctIndex) {
+          btn.classList.add("correct-base"); // visually different from start
+        }
+        btn.textContent = opt;
+        btn.onclick = () => {
+          const correct = i === q.correctIndex;
+          const allOptions = optionsContainer.querySelectorAll(".quiz-option");
+          allOptions.forEach(o => o.disabled = true);
+
+          if (correct) {
+            btn.classList.add("correct-final");
+            feedback.innerHTML = `<span>✅ Correct!</span> You know us so well 💖`;
+            state.game1.answers[idx] = { chosen: i, correct: true };
+            setTimeout(() => {
+              goToNextGame1Question();
+            }, 900);
+          } else {
+            btn.classList.add("wrong-final");
+            const correctText = q.options[q.correctIndex];
+            const correctBtn = allOptions[q.correctIndex];
+            correctBtn.classList.add("correct-final");
+            state.game1.answers[idx] = { chosen: i, correct: false };
+            showInfoPopup(`The right answer is: <strong>${correctText}</strong> 💖`, 1800, () => {
+              goToNextGame1Question();
+            });
+          }
+        };
+        optionsContainer.appendChild(btn);
+      });
+
+      function goToNextGame1Question() {
+        if (state.game1.currentQuestionIndex < game1Questions.length - 1) {
+          state.game1.currentQuestionIndex++;
+          fadeTo(renderGame1);
+        } else {
+          showPopup(
+            "One more game, pretty girl? 💖",
+            "Yes, let’s go 💓",
+            "No, take me to Valentine page 💕",
+            () => {
+              showPerfectMessage(renderGame2);
+            },
+            () => {
+              showPerfectMessage(renderValentinePage);
+            }
+          );
+        }
+      }
+    }
+
+    /* Game 2 */
+
+    const game2Questions = [
+      { question: "Who is more likely to steal the blanket? 😏", correct: "Dalia" },
+      { question: "Who said “I love you” first? 💓", correct: "Amr" },
+      { question: "Who laughs louder? 😂", correct: "Dalia" },
+      { question: "Who plans the cutest surprises? 🎁", correct: "Amr" },
+      { question: "Who is the real drama queen? 😜", correct: "Dalia" }
+    ];
+
+    function renderGame2() {
+      state.currentView = "game2";
+      const idx = state.game2.currentQuestionIndex;
+      const q = game2Questions[idx];
+
+      mainCard.innerHTML = `
+        <h2>Who is 💖</h2>
+        <p>Question ${idx + 1} of ${game2Questions.length}</p>
+        <p><strong>${q.question}</strong></p>
+        <div class="center" style="margin-top:10px;">
+          <button class="btn btn-small" id="amrBtn">Amr 💙</button>
+          <button class="btn btn-small" id="daliaBtn">Dalia 💕</button>
+        </div>
+        <div class="quiz-feedback" id="game2Feedback"></div>
+      `;
+
+      const feedback = document.getElementById("game2Feedback");
+      const amrBtn = document.getElementById("amrBtn");
+      const daliaBtn = document.getElementById("daliaBtn");
+
+      function choose(answer) {
+        amrBtn.disabled = true;
+        daliaBtn.disabled = true;
+        const correct = answer === q.correct;
+        state.game2.answers[idx] = { chosen: answer, correct };
+
+        if (correct) {
+          feedback.innerHTML = `<span>✅ Correct!</span> You know us perfectly 💖`;
+        } else {
+          feedback.innerHTML = `<span>👉</span> I was thinking: <strong>${q.correct}</strong> 😏`;
+        }
+
+        setTimeout(() => {
+          if (state.game2.currentQuestionIndex < game2Questions.length - 1) {
+            state.game2.currentQuestionIndex++;
+            fadeTo(renderGame2);
+          } else {
+            showPopup(
+              "One last game, my Valentine? 💖",
+              "Yes, last one 💓",
+              "No, take me to Valentine page 💕",
+              () => {
+                showPerfectMessage(renderGame3);
+              },
+              () => {
+                showPerfectMessage(renderValentinePage);
+              }
+            );
+          }
+        }, 1200);
+      }
+
+      amrBtn.onclick = () => choose("Amr");
+      daliaBtn.onclick = () => choose("Dalia");
+    }
+
+    /* Game 3 */
+
+    const game3Items = [
+      {
+        img: "Pic 1 placeholder",
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: "Pic 2 placeholder",
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: "Pic 3 placeholder",
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      }
+    ];
+
+    function renderGame3() {
+      state.currentView = "game3";
+      const idx = state.game3.currentQuestionIndex;
+      const item = game3Items[idx];
+
+      mainCard.innerHTML = `
+        <h2>Do you Remember 💓</h2>
+        <p>Memory ${idx + 1} of ${game3Items.length}</p>
+        <div class="slider-wrapper" style="margin-top:10px;">
+          <div class="slider-track" style="transform:none;">
+            <div class="slide" style="min-width:100%;max-width:100%;">
+              <div class="polaroid">
+                <!-- TODO: replace with real <img> -->
+                <div class="polaroid-inner">${item.img}</div>
+                <div class="polaroid-caption">A special moment 💖</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>${item.question1}</label>
+          <input type="text" class="form-input" id="g3q1" placeholder="Type your answer here 💕" />
+        </div>
+        <div class="form-group">
+          <label>${item.question2}</label>
+          <textarea class="form-input auto-textarea" id="g3q2" rows="2" placeholder="Tell me what you feel 💓"></textarea>
+        </div>
+        <div class="center">
+          <button class="btn" id="g3Next" disabled>Next 💕</button>
+        </div>
+      `;
+
+      initAutoTextareas(mainCard);
+
+      const q1 = document.getElementById("g3q1");
+      const q2 = document.getElementById("g3q2");
+      const nextBtn = document.getElementById("g3Next");
+
+      function checkFilled() {
+        nextBtn.disabled = !(q1.value.trim() && q2.value.trim());
+      }
+
+      q1.addEventListener("input", checkFilled);
+      q2.addEventListener("input", checkFilled);
+
+      nextBtn.onclick = () => {
+        state.game3.answers[idx] = {
+          where: q1.value.trim(),
+          feeling: q2.value.trim()
+        };
+
+        if (state.game3.currentQuestionIndex < game3Items.length - 1) {
+          state.game3.currentQuestionIndex++;
+          fadeTo(renderGame3);
+        } else {
+          showPerfectMessage(() => {
+            showPopup(
+              "Enough games, let’s find something to do 💓",
+              "Deal 💕",
+              null,
+              () => {
+                fadeTo(renderValentinePage);
+              },
+              null
+            );
+          });
+        }
+      };
+    }
+
+    /* Valentine page */
+
+    function renderValentinePage() {
+      state.currentView = "valentine";
+      mainCard.innerHTML = `
+        <h2>Choose a way to spend Valentine when you come back 💘</h2>
+        <p>Pick one, fill it in, and we’ll lock it in as our plan 💓</p>
+        <div class="choices-grid">
+          <div class="choice-card" data-choice="dinner">
+            <h3>🍽️ Romantic Dinner</h3>
+            <p>We dress up and go somewhere special 💕</p>
+            <div class="choice-content hidden">
+              <label>Cuisine or restaurant name</label>
+              <textarea class="form-input auto-textarea" id="dinnerInput" placeholder="Italian, American, or restaurant name 💓"></textarea>
+            </div>
+          </div>
+          <div class="choice-card" data-choice="movie">
+            <h3>🎬 Movie Night</h3>
+            <p>Cozy, cuddles, and snacks 😏</p>
+            <div class="choice-content hidden">
+              <label>Movie</label>
+              <textarea class="form-input auto-textarea" id="movieInput" placeholder="Movie name 💕"></textarea>
+              <label style="margin-top:6px;">Snacks</label>
+              <textarea class="form-input auto-textarea" id="snacksInput" placeholder="Popcorn, chocolate, etc. 💓"></textarea>
+            </div>
+          </div>
+          <div class="choice-card" data-choice="activity">
+            <h3>🎡 Some Activities</h3>
+            <p>We go out and do something fun 💖</p>
+            <div class="choice-content hidden">
+              <label>What activity?</label>
+              <textarea class="form-input auto-textarea" id="activityInput" placeholder="Bowling, arcade, walk, etc. 💕"></textarea>
+            </div>
+          </div>
+          <div class="choice-card" data-choice="other">
+            <h3>✨ Something Else</h3>
+            <p>You decide, I follow 💓</p>
+            <div class="choice-content hidden">
+              <label>What do you want to do?</label>
+              <textarea class="form-input auto-textarea" id="otherInput" placeholder="Anything you want 💖"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="center" style="margin-top:18px;">
+          <button class="btn" id="valentineGo" disabled>Let’s go 💘</button>
+        </div>
+      `;
+
+      initAutoTextareas(mainCard);
+
+      const cards = mainCard.querySelectorAll(".choice-card");
+      const goBtn = document.getElementById("valentineGo");
+
+      function updateButtonState() {
+        let filled = false;
+        switch (state.valentineChoice) {
+          case "dinner":
+            filled = !!document.getElementById("dinnerInput").value.trim();
+            break;
+          case "movie":
+            filled =
+              !!document.getElementById("movieInput").value.trim() &&
+              !!document.getElementById("snacksInput").value.trim();
+            break;
+          case "activity":
+            filled = !!document.getElementById("activityInput").value.trim();
+            break;
+          case "other":
+            filled = !!document.getElementById("otherInput").value.trim();
+            break;
+        }
+        goBtn.disabled = !filled;
+      }
+
+      cards.forEach(card => {
+        card.addEventListener("click", (e) => {
+          const choice = card.getAttribute("data-choice");
+          state.valentineChoice = choice;
+
+          cards.forEach(c => {
+            c.classList.remove("selected");
+            c.querySelector(".choice-content").classList.add("hidden");
+          });
+
+          card.classList.add("selected");
+          card.querySelector(".choice-content").classList.remove("hidden");
+          initAutoTextareas(card);
+          updateButtonState();
+        });
+      });
+
+      mainCard.addEventListener("input", (e) => {
+        if (["dinnerInput", "movieInput", "snacksInput", "activityInput", "otherInput"].includes(e.target.id)) {
+          updateButtonState();
+        }
+      });
+
+      goBtn.onclick = () => {
+        const choice = state.valentineChoice;
+        if (choice === "dinner") {
+          state.valentineInputs = {
+            type: "Romantic Dinner",
+            detail: document.getElementById("dinnerInput").value.trim()
+          };
+        } else if (choice === "movie") {
+          state.valentineInputs = {
+            type: "Movie Night",
+            movie: document.getElementById("movieInput").value.trim(),
+            snacks: document.getElementById("snacksInput").value.trim()
+          };
+        } else if (choice === "activity") {
+          state.valentineInputs = {
+            type: "Some Activities",
+            detail: document.getElementById("activityInput").value.trim()
+          };
+        } else if (choice === "other") {
+          state.valentineInputs = {
+            type: "Something Else",
+            detail: document.getElementById("otherInput").value.trim()
+          };
+        }
+        fadeTo(renderPage2);
+      };
+    }
+
+    /* Page 2 */
+
+    function renderPage2() {
+      state.currentView = "page2";
+      mainCard.innerHTML = `
+        <h2>Almost there, my Valentine 💓</h2>
+        <p>Just a tiny plan so when you’re back, we make it unforgettable 💖</p>
+        <div class="form-group">
+          <label>Choose number of rounds (1 to 4) 🔁</label>
+          <select class="form-input" id="roundsInput">
+            <option value="">Select rounds</option>
+            <option value="1">1 round</option>
+            <option value="2">2 rounds</option>
+            <option value="3">3 rounds</option>
+            <option value="4">4 rounds</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Question 1</label>
+          <input type="text" class="form-input" id="page2q1" placeholder="Your answer 💕" />
+        </div>
+        <div class="form-group">
+          <label>Question 2</label>
+          <input type="text" class="form-input" id="page2q2" placeholder="Your answer 💓" />
+        </div>
+        <div class="center">
+          <button class="btn" id="page2Go" disabled>Let’s do it 💘</button>
+        </div>
+      `;
+
+      const roundsInput = document.getElementById("roundsInput");
+      const q1 = document.getElementById("page2q1");
+      const q2 = document.getElementById("page2q2");
+      const goBtn = document.getElementById("page2Go");
+
+      function checkFilled() {
+        const filled = roundsInput.value && q1.value.trim() && q2.value.trim();
+        goBtn.disabled = !filled;
+      }
+
+      [roundsInput, q1, q2].forEach(el => el.addEventListener("input", checkFilled));
+
+      goBtn.onclick = () => {
+        state.page2Inputs = {
+          rounds: roundsInput.value,
+          q1: q1.value.trim(),
+          q2: q2.value.trim()
+        };
+        fadeTo(renderFinalPage);
+      };
+    }
+
+    /* Final page */
+
+    function renderFinalPage() {
+      state.currentView = "final";
+      mainCard.innerHTML = `
+        <h1>Happy Valentine’s Day, Doddity 💘</h1>
+        <p>
+          You said yes, you played my silly games, and you chose how we’ll spend our Valentine when you’re back. 💓
+        </p>
+        <p>
+          No matter what we do—Romantic dinner, movie night, crazy activities, or something totally random—being with you
+          is always my favorite part. You’re my home, my comfort, my chaos, and my forever Valentine, Doddity. 💖
+        </p>
+        <p>
+          Thank you for loving me, for laughing with me, for being patient with me, and for choosing me every day.
+          I promise to keep choosing you, in every lifetime, in every universe. ❤️‍🔥
+        </p>
+        <p class="center" style="margin-top:10px;">
+          Yours always,<br/>
+          <strong>Amr 💕</strong>
+        </p>
+      `;
+    }
+
+    renderIntro();
+  </script>
+</body>
+</html>
