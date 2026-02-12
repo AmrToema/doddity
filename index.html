@@ -491,7 +491,7 @@
 
   <!-- TODO: replace with your own music file -->
   <audio id="bgMusic" loop>
-    <!-- <source src="music.mp3" type="audio/mpeg" /> -->
+ 	<source src="music.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
@@ -669,7 +669,7 @@
       );
       mainCard.innerHTML = `
         <h1>Happy Valentine’s Day, Doddity 💘</h1>
-        <p>Just a tiny website from Amr to his forever Valentine, Dalia (aka Doddity) 💓</p>
+        <p>Just a tiny website from عمورتك to his forever Valentine, Dodditoo💓</p>
       `;
     }
 
@@ -725,7 +725,7 @@
     function renderPage1() {
       state.currentView = "page1";
       mainCard.innerHTML = `
-        <h1>Will you be my forever Valentine? 💘</h1>
+        <h1>Will you be my forever Valentine ya Doddityy? 💘</h1>
         <p>Some of our moments together… and one very important question 💕</p>
 
         <div class="slider-wrapper">
@@ -739,13 +739,27 @@
             </div>
             <div class="slide">
               <div class="polaroid">
-                <div class="polaroid-inner">Our Pic 2</div>
+                <div class="polaroid-inner">
+  <img src="pic1.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+</div>
                 <div class="polaroid-caption">Laughing together 💕</div>
               </div>
             </div>
             <div class="slide">
               <div class="polaroid">
                 <div class="polaroid-inner">Our Pic 3</div>
+                <div class="polaroid-caption">One of my favorites 😍</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner">Our Pic 10</div>
+                <div class="polaroid-caption">One of my favorites 😍</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner">Our Pic 11</div>
                 <div class="polaroid-caption">One of my favorites 😍</div>
               </div>
             </div>
@@ -763,7 +777,7 @@
         <div class="center" style="margin-top:10px;">
           <button class="btn btn-secondary no-btn" id="noBtn">No 😛</button>
         </div>
-        <p class="tagline">Choose wisely… or just choose <span>Yes</span> 10 times 😏💖</p>
+        <p class="tagline">Choose wisely… or just choose <span>Yes</span>😏💖</p>
       `;
 
       initSlider();
@@ -935,7 +949,8 @@
       { question: "Who said “I love you” first? 💓", correct: "Amr" },
       { question: "Who laughs louder? 😂", correct: "Dalia" },
       { question: "Who plans the cutest surprises? 🎁", correct: "Amr" },
-      { question: "Who is the real drama queen? 😜", correct: "Dalia" }
+      { question: "Who is the real drama queen? 😜", correct: "Dalia" },
+	{ question: "Who is the real drama qjiign? 😜", correct: "Dalia" }
     ];
 
     function renderGame2() {
