@@ -675,7 +675,7 @@
       );
       mainCard.innerHTML = `
         <h1>Happy Valentine’s Day, Doddity💕</h1>
-        <p>Just a ting Gift to my forever Valentine, Dodditoo💓</p>
+        <p>Just a ting gift to my forever Valentine, Dodditoo💓</p>
       `;
     }
 
@@ -838,7 +838,7 @@
         question: "Where was our first date? ❤️‍🔥",
         options: ["Cilantro", "Elshar2", "Ecuador"],
         correctIndex: 1
-      },/*
+      },
       {
         question: "When was our Cilantro first Date? ❤️‍🔥",
         options: ["28 December", "26 November", "28 November"],
@@ -883,7 +883,7 @@
         question: "Where was our first kiss? ❤️‍🔥",
         options: ["Le Metropole", "Santa Lucia", "Chez Gabi"],
         correctIndex: 1
-      }*/
+      }
     ];
 
     function renderGame1() {
@@ -959,7 +959,7 @@
 
     const game2Questions = [
       { question: "Who is more likely to sleep early? 😏", correct: "Amr" },
-    /*  { question: "Who said “I love you” first? 💓", correct: "Amr" },
+     { question: "Who said “I love you” first? 💓", correct: "Amr" },
       { question: "Who laughs louder? 😂", correct: "Dalia" },
       { question: "Who plans the cutest surprises? 🎁", correct: "Dalia" },
       { question: "Who triggers the other more?😁", correct: "Amr" },
@@ -967,7 +967,7 @@
        { question: "Who cooks better?👩🏻‍🍳", correct: "Dalia" },
        { question: "Who got better sense of decoration?🪴", correct: "Dalia" },
        { question: "Who is more stubborn?🫣", correct: "Amr" },
- 	     { question: "Who is more caring? 👸", correct: "Dalia" }*/
+ 	     { question: "Who is more caring? 👸", correct: "Dalia" }
     ];
 
     function renderGame2() {
@@ -997,7 +997,7 @@
         state.game2.answers[idx] = { chosen: answer, correct };
 
         if (correct) {
-          feedback.innerHTML = `<span>✅ Correct!</span> You know us perfectly 💖`;
+          feedback.innerHTML = `<span>✅Ashtar bantosaa!</span> You know us perfectly 💖`;
         } else {
           feedback.innerHTML = `<span>👉</span> I was thinking: <strong>${q.correct}</strong> 😏`;
         }
@@ -1033,7 +1033,7 @@
         img: '<img src="rpic1.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
         question1: "Where did we take this pic? 💓",
         question2: "What do you feel when you see it? 💕"
-      },/*
+      },
       {
         img: '<img src="rpic2.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
         question1: "Where did we take this pic? 💓",
@@ -1078,7 +1078,7 @@
         img: '<img src="rpic10.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
         question1: "Where did we take this pic? 💓",
         question2: "What do you feel when you see it? 💕"
-      },*/
+      },
     ];
     const game4Questions = [
       {
@@ -1379,7 +1379,7 @@
     function renderPage2() {
       state.currentView = "page2";
       mainCard.innerHTML = `
-        <h2>Almost there, Doddityy 😈💓</h2>
+        <h2>Almost there, Doddityy. </br>After party💓</h2>
         <p>After giving you oily soft massage,</br>Kissing you so hard🤤, fingering your tight hot pussy💖, then lick it till you cum 😋 </p>
         <div class="form-group">
           <label>How many rounds of Love (1 to 4) 💓💕🔁</label>
@@ -1469,7 +1469,29 @@ sendAnswersToSheet();
           Yours always,<br/>
           <strong>Amr💓</strong>
         </p>
-      `;
+          <div class="center" style="margin-top:20px;">
+            <button class="btn" id="startOverBtn">Start Over 💞</button>
+          </div>`;
+          document.getElementById("startOverBtn").onclick = () => {
+  // Reset all game states
+  state.game1.currentQuestionIndex = 0;
+  state.game1.answers = [];
+
+  state.game2.currentQuestionIndex = 0;
+  state.game2.answers = [];
+
+  state.game3.currentQuestionIndex = 0;
+  state.game3.answers = [];
+
+  state.game4.currentQuestionIndex = 0;
+  state.game4.answers = [];
+
+  state.valentineChoice = null;
+  state.valentineInputs = {};
+  state.page2Inputs = { rounds: "", q1: "", q2: "" };
+
+  fadeTo(renderIntro);
+};
     }
 
     renderIntro();
