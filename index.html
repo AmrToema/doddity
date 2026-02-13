@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Happy Valentine’s Day, Doddity 💖</title>
+  <title>Happy Valentine’s Day, Doddity👸🏻</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -483,7 +483,7 @@
 
   <div class="app">
     <div class="top-banner">
-      💓❤️‍🔥💖 <span>I love you, Doddity</span> 💖❤️‍🔥💓
+      💓❤️‍🔥💖 <span>I love you, Doddity👸🏻</span> 💖❤️‍🔥💓
     </div>
 
     <div id="mainCard" class="card"></div>
@@ -513,6 +513,11 @@
         answers: [],
         totalQuestions: 3
       },
+	game4: {
+ 	 currentQuestionIndex: 0,
+	  answers: [],
+	  totalQuestions: 4
+	},
       valentineChoice: null,
       valentineInputs: {},
       page2Inputs: {
@@ -627,7 +632,8 @@
       fadeTo(() => {
         mainCard.innerHTML = `
           <div class="game-perfect">
-            Doddityy, <span>10/10</span> you're perfect 💕
+             <h2>Yalla beeenaaaa! 💓</h2>
+              <p>[بصوت داليا] 😏🎮</p>
           </div>
         `;
       });
@@ -655,7 +661,7 @@
       state.currentView = "intro";
       showPopup(
         "Wanna play some music while we go on this little love journey? 🎶💓",
-        "Yes my love 💖",
+        "Yalla beeenaaaa!  💖",
         "Not now cutie 💕",
         () => {
           state.musicOn = true;
@@ -668,8 +674,8 @@
         }
       );
       mainCard.innerHTML = `
-        <h1>Happy Valentine’s Day, Doddity 💘</h1>
-        <p>Just a tiny website from عمورتك to his forever Valentine, Dodditoo💓</p>
+        <h1>Happy Valentine’s Day, Doddity💕</h1>
+        <p>Just a ting Gift to my forever Valentine, Dodditoo💓</p>
       `;
     }
 
@@ -725,7 +731,7 @@
     function renderPage1() {
       state.currentView = "page1";
       mainCard.innerHTML = `
-        <h1>Will you be my forever Valentine ya Doddityy? 💘</h1>
+        <h1>Will you be my forever Valentine ya Doddityy👸🏻? 💘</h1>
         <p>Some of our moments together… and one very important question 💕</p>
 
         <div class="slider-wrapper">
@@ -733,46 +739,52 @@
             <!-- TODO: replace placeholders with real <img> inside .polaroid-inner -->
             <div class="slide">
               <div class="polaroid">
-                <div class="polaroid-inner">Our Pic 1</div>
+                <div class="polaroid-inner"><img src="pic12.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
                 <div class="polaroid-caption">You & Me 💓</div>
               </div>
             </div>
             <div class="slide">
               <div class="polaroid">
                 <div class="polaroid-inner">
-  <img src="pic1.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+  <img src="spic1.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
 </div>
                 <div class="polaroid-caption">Laughing together 💕</div>
               </div>
             </div>
             <div class="slide">
               <div class="polaroid">
-                <div class="polaroid-inner">Our Pic 3</div>
+                <div class="polaroid-inner"><img src="spic2.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
                 <div class="polaroid-caption">One of my favorites 😍</div>
               </div>
             </div>
             <div class="slide">
               <div class="polaroid">
-                <div class="polaroid-inner">Our Pic 10</div>
+                <div class="polaroid-inner"><img src="spic3.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
                 <div class="polaroid-caption">One of my favorites 😍</div>
               </div>
             </div>
             <div class="slide">
               <div class="polaroid">
-                <div class="polaroid-inner">Our Pic 11</div>
+                <div class="polaroid-inner"><img src="spic4.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
                 <div class="polaroid-caption">One of my favorites 😍</div>
               </div>
             </div>
             <div class="slide">
               <div class="polaroid">
-                <div class="polaroid-inner">Our Pic 4</div>
+                <div class="polaroid-inner"><img src="spic5.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
+                <div class="polaroid-caption">Forever us ❤️‍🔥</div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="polaroid">
+                <div class="polaroid-inner"><img src="spic6.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"></div>
                 <div class="polaroid-caption">Forever us ❤️‍🔥</div>
               </div>
             </div>
           </div>
         </div>
 
-        <p class="center">Will you be my forever Valentine, Doddity? 💓</p>
+        <p class="center">Will you be my forever Valentine, Doddity👸🏻? 💓</p>
         <div class="yes-buttons" id="yesButtons"></div>
         <div class="center" style="margin-top:10px;">
           <button class="btn btn-secondary no-btn" id="noBtn">No 😛</button>
@@ -788,14 +800,15 @@
         btn.className = "btn btn-small";
         btn.textContent = "Yes 💖";
         btn.onclick = () => {
-          fadeTo(() => {
-            mainCard.innerHTML = `
-              <h2>Yaaay! 💓</h2>
-              <p>But first… let’s play some games 😏🎮</p>
-            `;
-          });
-          setTimeout(() => fadeTo(renderGame1Intro), 1500);
-        };
+  showPopup(
+    "Shall we play a game first, Doddityy 💖?",
+    "Yalla benaaa 💕",
+    "No, take me to Valentine page 💓",
+    () => fadeTo(renderGame1Intro),
+    () => fadeTo(renderValentinePage)
+  );
+};
+
         yesContainer.appendChild(btn);
       }
 
@@ -811,66 +824,66 @@
     function renderGame1Intro() {
       fadeTo(() => {
         mainCard.innerHTML = `
-          <h2>Let’s play some games first 💕</h2>
-          <p>We’ll start with a little “Love Quiz about us ❤️‍🔥”.</p>
+          <h2> Ready, Set, I Love Youuuu 💕</h2>
+          <p>We’ll start with a little <strong>Love Quiz about us</strong> ❤️‍🔥.</p>
         `;
       });
-      setTimeout(() => fadeTo(renderGame1), 1500);
+      setTimeout(() => fadeTo(renderGame1), 1000);
     }
 
     /* Game 1 */
 
     const game1Questions = [
       {
-        question: "Question 1 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "Where was our first date? ❤️‍🔥",
+        options: ["Cilantro", "Elshar2", "Ecuador"],
         correctIndex: 1
-      },
+      },/*
       {
-        question: "Question 2 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "When was our Cilantro first Date? ❤️‍🔥",
+        options: ["28 December", "26 November", "28 November"],
         correctIndex: 0
       },
       {
-        question: "Question 3 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "In which cafe did I first say I love you? ❤️‍🔥",
+        options: ["Sharx", "Home Station", "Ecuador"],
         correctIndex: 2
       },
       {
-        question: "Question 4 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "When was our engagement? ❤️‍🔥",
+        options: ["26 June", "28 July", "27 August"],
         correctIndex: 1
       },
       {
-        question: "Question 5 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "After (كتب الكتاب), Where did we spent the night? ❤️‍🔥",
+        options: ["Santa Lucia", "Pablo", "Tiffany"],
         correctIndex: 0
       },
       {
-        question: "Question 6 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "When was our wedding party? ❤️‍🔥",
+        options: ["28 July", "17 June", "18 July"],
         correctIndex: 2
       },
       {
-        question: "Question 7 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "In Which hotel did we spend our Honeymoon? ❤️‍🔥",
+        options: ["Ritz", "Premier le Reve", "Kaisol"],
         correctIndex: 1
       },
       {
-        question: "Question 8 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "When was our first kiss? ❤️‍🔥",
+        options: ["5 May", "23 April", "16 November"],
         correctIndex: 0
       },
       {
-        question: "Question 9 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "Where was our first anniversary date? ❤️‍🔥",
+        options: ["Karaz", "D'amie", "Carbone"],
         correctIndex: 2
       },
       {
-        question: "Question 10 placeholder about us ❤️‍🔥",
-        options: ["Option A", "Option B", "Option C"],
+        question: "Where was our first kiss? ❤️‍🔥",
+        options: ["Le Metropole", "Santa Lucia", "Chez Gabi"],
         correctIndex: 1
-      }
+      }*/
     ];
 
     function renderGame1() {
@@ -903,18 +916,18 @@
 
           if (correct) {
             btn.classList.add("correct-final");
-            feedback.innerHTML = `<span>✅ Correct!</span> You know us so well 💖`;
+            feedback.innerHTML = `<span>✅ Ashtar bantosaa!</span> You know us so well 💖`;
             state.game1.answers[idx] = { chosen: i, correct: true };
             setTimeout(() => {
               goToNextGame1Question();
-            }, 900);
+            }, 500);
           } else {
             btn.classList.add("wrong-final");
             const correctText = q.options[q.correctIndex];
             const correctBtn = allOptions[q.correctIndex];
             correctBtn.classList.add("correct-final");
             state.game1.answers[idx] = { chosen: i, correct: false };
-            showInfoPopup(`The right answer is: <strong>${correctText}</strong> 💖`, 1800, () => {
+            showInfoPopup(`The right answer is: <strong>${correctText}</strong> 🙄`, 1800, () => {
               goToNextGame1Question();
             });
           }
@@ -928,8 +941,8 @@
           fadeTo(renderGame1);
         } else {
           showPopup(
-            "One more game, pretty girl? 💖",
-            "Yes, let’s go 💓",
+            "One more game, Doddity👸🏻? 💖",
+            "Yalla Benaa 💓",
             "No, take me to Valentine page 💕",
             () => {
               showPerfectMessage(renderGame2);
@@ -945,12 +958,16 @@
     /* Game 2 */
 
     const game2Questions = [
-      { question: "Who is more likely to steal the blanket? 😏", correct: "Dalia" },
-      { question: "Who said “I love you” first? 💓", correct: "Amr" },
+      { question: "Who is more likely to sleep early? 😏", correct: "Amr" },
+    /*  { question: "Who said “I love you” first? 💓", correct: "Amr" },
       { question: "Who laughs louder? 😂", correct: "Dalia" },
-      { question: "Who plans the cutest surprises? 🎁", correct: "Amr" },
-      { question: "Who is the real drama queen? 😜", correct: "Dalia" },
-	{ question: "Who is the real drama qjiign? 😜", correct: "Dalia" }
+      { question: "Who plans the cutest surprises? 🎁", correct: "Dalia" },
+      { question: "Who triggers the other more?😁", correct: "Amr" },
+	     { question: "Who sleeps more😴?", correct: "Dalia" },
+       { question: "Who cooks better?👩🏻‍🍳", correct: "Dalia" },
+       { question: "Who got better sense of decoration?🪴", correct: "Dalia" },
+       { question: "Who is more stubborn?🫣", correct: "Amr" },
+ 	     { question: "Who is more caring? 👸", correct: "Dalia" }*/
     ];
 
     function renderGame2() {
@@ -963,7 +980,7 @@
         <p>Question ${idx + 1} of ${game2Questions.length}</p>
         <p><strong>${q.question}</strong></p>
         <div class="center" style="margin-top:10px;">
-          <button class="btn btn-small" id="amrBtn">Amr 💙</button>
+          <button class="btn btn-small" id="amrBtn">Amr💓</button>
           <button class="btn btn-small" id="daliaBtn">Dalia 💕</button>
         </div>
         <div class="quiz-feedback" id="game2Feedback"></div>
@@ -991,8 +1008,8 @@
             fadeTo(renderGame2);
           } else {
             showPopup(
-              "One last game, my Valentine? 💖",
-              "Yes, last one 💓",
+              "One more game, Doddity👸🏻? 💖",
+              "Yalla Benaa 💓",
               "No, take me to Valentine page 💕",
               () => {
                 showPerfectMessage(renderGame3);
@@ -1013,22 +1030,74 @@
 
     const game3Items = [
       {
-        img: "Pic 1 placeholder",
+        img: '<img src="rpic1.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },/*
+      {
+        img: '<img src="rpic2.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
         question1: "Where did we take this pic? 💓",
         question2: "What do you feel when you see it? 💕"
       },
       {
-        img: "Pic 2 placeholder",
+        img: '<img src="rpic3.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
         question1: "Where did we take this pic? 💓",
         question2: "What do you feel when you see it? 💕"
       },
       {
-        img: "Pic 3 placeholder",
+        img: '<img src="rpic4.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
         question1: "Where did we take this pic? 💓",
         question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: '<img src="rpic5.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: '<img src="rpic6.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: '<img src="rpic7.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: '<img src="rpic8.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: '<img src="rpic9.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },
+      {
+        img: '<img src="rpic10.jpeg" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">',
+        question1: "Where did we take this pic? 💓",
+        question2: "What do you feel when you see it? 💕"
+      },*/
+    ];
+    const game4Questions = [
+      {
+        question: "List 4 dates that are your favorite 💓",
+        placeholders: ["Santa Lucia", " Carbone", " Home Station movie night", "The jewelry palace museum"]
+      },
+      {
+        question: "List 4 things you love about me 💕",
+        placeholders: ["Your eyes and Shinny smile specially in your morning sleepy mood💓", "your body; your beautiful squishy boobies, you sexy round booty, your hips, your pussy, everything about you🤤", "You're caring like a mother, funny like a bestie and romantic like a soulmate", "Last but not least you scent send me to heaven 💖"]
+      },
+      {
+        question: "List 4 activities you want to try with me ❤️‍🔥",
+        placeholders: ["Sky Diving", "Diving", "bungee jumping while hugging you", "Snow skating"]
+      },
+      {
+        question: "List 4 reasons why you love me 😍",
+        placeholders: ["For Being DALIA👸🏻💓", "I feel Safe around you, that I always fall asleep💖", "You're so emotionally smart and intelligent👸🏻💖", "You Satisfy in every possible way💖❤️‍🔥💓"]
       }
     ];
-
     function renderGame3() {
       state.currentView = "game3";
       const idx = state.game3.currentQuestionIndex;
@@ -1041,7 +1110,7 @@
           <div class="slider-track" style="transform:none;">
             <div class="slide" style="min-width:100%;max-width:100%;">
               <div class="polaroid">
-                <!-- TODO: replace with real <img> -->
+
                 <div class="polaroid-inner">${item.img}</div>
                 <div class="polaroid-caption">A special moment 💖</div>
               </div>
@@ -1086,25 +1155,106 @@
         } else {
           showPerfectMessage(() => {
             showPopup(
-              "Enough games, let’s find something to do 💓",
-              "Deal 💕",
-              null,
-              () => {
-                fadeTo(renderValentinePage);
-              },
-              null
-            );
+            "One last special game for our 4th Valentine? 💖",
+            "Yalla Benaa 💕",
+            "No, take me to Valentine page 💕",
+            () => fadeTo(renderGame4),
+            () => fadeTo(renderValentinePage)
+          );
+
+
           });
         }
       };
     }
+    /*GAme 4*/
+    function renderGame4() {
+      state.currentView = "game4";
+      const idx = state.game4.currentQuestionIndex;
+      const q = game4Questions[idx];
+
+      mainCard.innerHTML = `
+        <h2>Our 4th Valentine’s Game 💘</h2>
+        <p>Question ${idx + 1} of 4</p>
+        <p><strong>${q.question}</strong></p>
+
+        <div class="form-group">
+          <input type="text" class="form-input g4" placeholder="Answer 1 💕" id="g4a1">
+          <input type="text" class="form-input g4" placeholder="Answer 2 💕" id="g4a2">
+          <input type="text" class="form-input g4" placeholder="Answer 3 💕" id="g4a3">
+          <input type="text" class="form-input g4" placeholder="Answer 4 💕" id="g4a4">
+        </div>
+
+        <div class="center">
+          <button class="btn" id="g4Next" disabled>Next 💖</button>
+        </div>
+      `;
+
+      const inputs = [...document.querySelectorAll(".g4")];
+      const nextBtn = document.getElementById("g4Next");
+
+      function checkFilled() {
+        nextBtn.disabled = !inputs.every(i => i.value.trim());
+      }
+
+      inputs.forEach(i => i.addEventListener("input", checkFilled));
+
+      nextBtn.onclick = () => {
+        state.game4.answers[idx] = inputs.map(i => i.value.trim());
+        fadeTo(() => showGame4MiniSummary(idx));
+      };
+    }
+    function showGame4MiniSummary(idx) {
+  const her = state.game4.answers[idx];
+  const mine = game4Questions[idx].placeholders;
+
+  let html = `
+    <h2>Your Answers 💖</h2>
+    <h3>${game4Questions[idx].question}</h3>
+  `;
+
+  her.forEach((ans, i) => {
+    html += `<p><strong>${i + 1}.</strong> ${ans}</p>`;
+  });
+
+  html += `
+    <h2 style="margin-top:20px;">Amr’s Answers 💕</h2>
+  `;
+
+  mine.forEach((ans, i) => {
+    html += `<p><strong>${i + 1}.</strong> ${ans}</p>`;
+  });
+
+  html += `
+    <div class="center" style="margin-top:20px;">
+      <button class="btn" id="g4NextQ">Continue 💘</button>
+    </div>
+  `;
+
+  mainCard.innerHTML = html;
+
+  document.getElementById("g4NextQ").onclick = () => {
+    if (idx < game4Questions.length - 1) {
+      state.game4.currentQuestionIndex++;
+      fadeTo(renderGame4);
+    } else {
+    showPopup(
+      "kefaya le3b ba2a ta3ali, let’s find something to do 💓",
+      "Yalla Bena 💕",
+      null,
+      () => fadeTo(renderValentinePage),
+      null
+    );
+  }
+  };
+}
 
     /* Valentine page */
 
     function renderValentinePage() {
       state.currentView = "valentine";
       mainCard.innerHTML = `
-        <h2>Choose a way to spend Valentine when you come back 💘</h2>
+        <h2>Choose a way to spend Valentine when you come back, (إن شاء الله) 💘</h2>
         <p>Pick one, fill it in, and we’ll lock it in as our plan 💓</p>
         <div class="choices-grid">
           <div class="choice-card" data-choice="dinner">
@@ -1143,7 +1293,7 @@
           </div>
         </div>
         <div class="center" style="margin-top:18px;">
-          <button class="btn" id="valentineGo" disabled>Let’s go 💘</button>
+          <button class="btn" id="valentineGo" disabled>Yalla Bena 💘</button>
         </div>
       `;
 
@@ -1229,12 +1379,12 @@
     function renderPage2() {
       state.currentView = "page2";
       mainCard.innerHTML = `
-        <h2>Almost there, my Valentine 💓</h2>
-        <p>Just a tiny plan so when you’re back, we make it unforgettable 💖</p>
+        <h2>Almost there, Doddityy 😈💓</h2>
+        <p>After giving you oily soft massage,</br>Kissing you so hard🤤, fingering your tight hot pussy💖, then lick it till you cum 😋 </p>
         <div class="form-group">
-          <label>Choose number of rounds (1 to 4) 🔁</label>
+          <label>How many rounds of Love (1 to 4) 💓💕🔁</label>
           <select class="form-input" id="roundsInput">
-            <option value="">Select rounds</option>
+            <option value="">How many rounds?</option>
             <option value="1">1 round</option>
             <option value="2">2 rounds</option>
             <option value="3">3 rounds</option>
@@ -1242,15 +1392,15 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Question 1</label>
+          <label>What are the position you want 😋?</label>
           <input type="text" class="form-input" id="page2q1" placeholder="Your answer 💕" />
         </div>
         <div class="form-group">
-          <label>Question 2</label>
+          <label>After cumming, shaking and relaxe,</br>What you wanna eat/drink 😋?</label>
           <input type="text" class="form-input" id="page2q2" placeholder="Your answer 💓" />
         </div>
         <div class="center">
-          <button class="btn" id="page2Go" disabled>Let’s do it 💘</button>
+          <button class="btn" id="page2Go" disabled>Let’s do it 🥵</button>
         </div>
       `;
 
@@ -1284,6 +1434,7 @@ async function sendAnswersToSheet() {
     game1: state.game1.answers,
     game2: state.game2.answers,
     game3: state.game3.answers,
+    game4: state.game4.answers,
     valentine: state.valentineInputs,
     page2: state.page2Inputs
   };
@@ -1301,21 +1452,22 @@ async function sendAnswersToSheet() {
 sendAnswersToSheet();
       state.currentView = "final";
       mainCard.innerHTML = `
-        <h1>Happy Valentine’s Day, Doddity 💘</h1>
+        <h1>Happy Valentine’s Day, Doddity💕</h1>
         <p>
           You said yes, you played my silly games, and you chose how we’ll spend our Valentine when you’re back. 💓
         </p>
         <p>
-          No matter what we do—Romantic dinner, movie night, crazy activities, or something totally random—being with you
-          is always my favorite part. You’re my home, my comfort, my chaos, and my forever Valentine, Doddity. 💖
+          No matter what we do — Romantic dinner, movie night, crazy activities, or something totally random — being with you
+          is always my favorite part. You’re my home, my comfort, my chaos, and my forever Valentine, Doddity👸🏻. 💖
         </p>
         <p>
-          Thank you for loving me, for laughing with me, for being patient with me, and for choosing me every day.
-          I promise to keep choosing you, in every lifetime, in every universe. ❤️‍🔥
+          Thank you for loving me, for laughing with me, for being patient with me, for making every place a comfy home, for taking good care of me, and for choosing me every day.
+          I promise to keep choosing you, in every lifetime, in every universe. ❤️‍🔥<br/>(Words will never describe how much I appreciate you, Doddity👸🏻💖)
         </p>
+        <p>I Love you to infinity and beyond</br>(ربنا ميحرمنيش منك ابدا، ويباركلي فيكي )</p>
         <p class="center" style="margin-top:10px;">
           Yours always,<br/>
-          <strong>Amr 💕</strong>
+          <strong>Amr💓</strong>
         </p>
       `;
     }
